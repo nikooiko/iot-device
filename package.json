@@ -1,0 +1,32 @@
+{
+  "name": "iot-device",
+  "version": "1.0.0",
+  "description": "This is an app that implements a way for a device to connect to [iot-hub](https://github.com/nikooiko/iot-hub).",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikooiko/iot-device.git"
+  },
+  "author": "Nick Oikonomou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikooiko/iot-device/issues"
+  },
+  "homepage": "https://github.com/nikooiko/iot-device#readme",
+  "devDependencies": {
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^1.5.5",
+    "eslint-plugin-react": "^5.2.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "request": "^2.79.0",
+    "socket.io-client": "^1.7.2"
+  }
+}

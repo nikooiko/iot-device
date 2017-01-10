@@ -1,0 +1,33 @@
+{
+  "server": {
+    "serverUrl": "http://localhost:3000",
+    "loginUrl": "/api/Devices/login",
+    "devicesPath": "/devices"
+  },
+  "ownerInformation": {
+    "ownerId": "586d82205a07d3e40f3baa20"
+  },
+  "dataGenerator": {
+    "enabled": {
+      "enabled": true,
+      "opts": {
+        "settings": {
+          "sleepTime": 5000,
+          "wakeTime": 1,
+          "samplingRate": 1,
+          "timespan": 0
+        },
+        "sensors": [
+          {
+            "sensorId": "sensorId-1",
+            "value": 1
+          },
+          {
+            "sensorId": "sensorId-2",
+            "value": 5
+          }
+        ]
+      }
+    }
+  }
+}

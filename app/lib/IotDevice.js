@@ -3,6 +3,7 @@
 const request = require('request');
 const io = require('socket.io-client');
 
+const DataGenerator = require('./DataGenerator');
 const config = require('../config.json');
 const serverUrl = config.server.serverUrl;
 const loginUrl = config.server.loginUrl;
@@ -22,6 +23,10 @@ class IotDevice {
     this.loginRetryInterval = 5000;
     this.reconnectInterval = 5000;
     this.deviceId = this.generateDeviceId();
+    this.dataGeneratorEnabled = config.dataGenerator.enabled;
+    if (this.dataGeneratorEnabled) {
+      this.dataGenerator = new DataGenerator(config.dataGenerator.opts);
+    }
     this.connectSocket();
   }
 
@@ -58,11 +63,24 @@ class IotDevice {
 
   setupSocket() {
     const socket = this.socket;
+    const deviceId = this.deviceId;
     socket.on('connect', () => {
       console.info('Device connected to hub.');
+      if (this.dataGeneratorEnabled) {
+        this.dataGenerator.start((data) => {
+          console.info('Sending data to hub:', data);
+          socket.emit('data', {
+            deviceId,
+            data
+          });
+        });
+      }
     });
     socket.on('disconnect', () => {
       console.error('Device disconnected from hub.');
+      if (this.dataGeneratorEnabled) {
+        this.dataGenerator.stop();
+      }
       setTimeout(() => this.connectSocket(), this.reconnectInterval);
     });
   }

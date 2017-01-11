@@ -8,26 +8,20 @@
     "ownerId": "586d82205a07d3e40f3baa20"
   },
   "dataGenerator": {
-    "enabled": {
-      "enabled": true,
-      "opts": {
-        "settings": {
-          "sleepTime": 5000,
-          "wakeTime": 1,
-          "samplingRate": 1,
-          "timespan": 0
+    "enabled": true,
+    "opts": {
+      "settings": {
+        "sleepTime": 5000
+      },
+      "sensors": [
+        {
+          "values": [1, 5],
+          "valuesPattern": "seq"
         },
-        "sensors": [
-          {
-            "sensorId": "sensorId-1",
-            "value": 1
-          },
-          {
-            "sensorId": "sensorId-2",
-            "value": 5
-          }
-        ]
-      }
+        {
+          "value": 5
+        }
+      ]
     }
   }
 }

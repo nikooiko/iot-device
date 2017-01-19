@@ -23,6 +23,7 @@ class IotDevice {
     this.loginRetryInterval = 5000;
     this.reconnectInterval = 5000;
     this.deviceId = this.generateDeviceId();
+    console.info(`Generated DeviceId=${this.deviceId}.`);
     this.dataGeneratorEnabled = config.dataGenerator.enabled;
     if (this.dataGeneratorEnabled) {
       this.dataGenerator = new DataGenerator(config.dataGenerator.opts);
@@ -63,14 +64,12 @@ class IotDevice {
 
   setupSocket() {
     const socket = this.socket;
-    const deviceId = this.deviceId;
     socket.on('connect', () => {
       console.info('Device connected to hub.');
       if (this.dataGeneratorEnabled) {
         this.dataGenerator.start((data) => {
           console.info('Sending data to hub:', data);
           socket.emit('data', {
-            deviceId,
             data
           });
         });
@@ -91,7 +90,7 @@ class IotDevice {
       const maxF = Math.floor(max);
       return Math.floor(Math.random() * (maxF - minC)) + minC;
     };
-    return process.env.deviceId || `deviceId-${getRandomInt(7, 8)}`;
+    return process.env.deviceId || `deviceId-${getRandomInt(0, 100000)}`;
   }
 }
 

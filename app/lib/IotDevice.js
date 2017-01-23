@@ -20,8 +20,8 @@ class IotDevice {
     });
     this.connectionPath = `${serverUrl}${devicesPath}`;
     this.socket = null;
-    this.loginRetryInterval = 5000;
-    this.reconnectInterval = 5000;
+    this.loginRetryInterval = config.server.loginRetryInterval;
+    this.reconnectInterval = config.server.socketReconnectInterval;
     this.deviceId = this.generateDeviceId();
     console.info(`Generated DeviceId=${this.deviceId}.`);
     this.dataGeneratorEnabled = config.dataGenerator.enabled;

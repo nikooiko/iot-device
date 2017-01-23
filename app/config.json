@@ -1,22 +1,32 @@
 {
   "server": {
-    "serverUrl": "http://localhost:3000",
+    "serverUrl": "http://iot-hub.tk",
     "loginUrl": "/api/Devices/login",
-    "devicesPath": "/devices"
+    "devicesPath": "/devices",
+    "loginRetryInterval": 30000,
+    "socketReconnectInterval": 5000
   },
   "ownerInformation": {
-    "ownerId": "586d82205a07d3e40f3baa20"
+    "ownerId": "5885f099d8570e000f547273"
   },
   "dataGenerator": {
     "enabled": true,
     "opts": {
       "settings": {
-        "sleepTime": 5000
+        "sleepTime": 15000
       },
       "sensors": [
         {
-          "values": [1, 5],
+          "values": [1, 5, 10],
           "valuesPattern": "seq"
+        },
+        {
+          "values": [1, 100],
+          "valuesPattern": "random"
+        },
+        {
+          "values": [1, 100],
+          "valuesPattern": "range"
         },
         {
           "value": 5

@@ -7,7 +7,7 @@ const DataGenerator = require('./DataGenerator');
 const config = require('../config.json');
 const serverUrl = config.server.serverUrl;
 const loginUrl = config.server.loginUrl;
-const ownerId = config.ownerInformation.ownerId;
+const ownerId = process.env.ownerId || config.ownerInformation.ownerId; // get env or config
 const devicesPath = config.server.devicesPath;
 
 class IotDevice {
